@@ -115,13 +115,15 @@ addons/
 ### 4.使用 godot ai hook
 来到正题，这时可以使用插件了，打开个文本节点，在它下面挂载个 ai_manage节点（ctrl+a)+输入框输入ai应该就能看到了。
 
-![create_ai_manage](https://github.com/user-attachments/assets/89865771-1e3f-4d12-8316-e289873bf08c)
+![load_ai_manage](https://github.com/user-attachments/assets/e15d6fcd-dbd6-47ce-8ee7-6dead78bbfd0)
+
 
 在场景脚本里引用 ai_manage 节点，添加 ai_manage 节点.say("你想问的问题") 再运行这个场景就可以看到回答了。
 
 ![excute](https://github.com/user-attachments/assets/844156d8-e82f-46c7-82b2-eab4703cb579)
 
-![it_work](https://github.com/user-attachments/assets/93cbac25-9d66-422d-818f-3ba652c7078e)
+![it_work!](https://github.com/user-attachments/assets/bbb93514-873c-429c-aa9f-309a4ef202af)
+
 
 ### 5.设置自定义的系统提示词 system_prompt
 你可以使用 ai_manage 节点.say("你想问的问题"，system_prompt) ，不过 system_prompt 往往很长，更推荐在 system_prompt 配置文件字典添加 key + 定制 system_prompt 来设置 system_prompt 。
