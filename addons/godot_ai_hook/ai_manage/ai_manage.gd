@@ -176,36 +176,52 @@ func _enqueue_text(text: String):
 		_is_typing = true
 		set_process(true)
 
-
+# 判断节点是否具备文本读写能力
+func _has_text_interface(node: Object) -> bool:
+	return node != null \
+		and node.has_method("set_text") \
+		and node.has_method("get_text") \
+		and typeof(node.get_text()) == TYPE_STRING
+# 清空父节点的文本内容
 func clean_parent_text_content():
 	if parent == null:
 		push_error("AiManage: parent 为空，无法清空文本")
 		return
 
-	if parent is TextEdit or parent is Label or parent is LineEdit or parent is Label3D:
-		parent.text = ""
-	elif parent is RichTextLabel:
+	# 优先使用 set_text 接口：适用于 Label/LineEdit/TextEdit/RichTextLabel 以及自定义控件
+	if _has_text_interface(parent):
+		parent.set_text("")
+		return
+
+	# 某些控件只提供 clear() 来清空，例如你自己写的控件
+	if parent.has_method("clear"):
 		parent.clear()
-	else:
-		push_error("AiManage: parent 类型不支持清空文本，类型 = " + parent.get_class()+"\n可以在ai_manage.clean_parent_text_content(text)里添加该节点类型")
+		return
+
+	push_error("AiManage: parent 类型不支持清空文本，类型 = " + parent.get_class() + "\n可以在 ai_manage.gd 里为该控件实现清空逻辑")
+
 # 根据父节点控件类型安全地立即追加一段文本
 func _append_text_safe(text: String):
 	if parent == null:
 		push_error("AiManage: parent 为空")
 		return
 
-	if parent is TextEdit or parent is Label:
-		parent.text += text
-	elif  parent is LineEdit:
-		parent.text +=text
-	elif parent is RichTextLabel:
+	# 通用 set_text/get_text 接口
+	if _has_text_interface(parent):
+		var old_text = parent.get_text()
+		if old_text == null:
+			old_text = ""
+		parent.set_text(str(old_text) + text)
+		return
+
+	# 某些控件有 append_text（如 RichTextLabel）
+	if parent.has_method("append_text"):
 		parent.append_text(text)
-	elif parent is Label3D:
-		parent.text += text
-	else:
-		push_error(
-			"AiManage: parent 不支持文本追加，类型 = " + parent.get_class() +"\n可以在ai_manage._append_text_safe(text)里添加该节点类型"
-		)
+		return
+
+	push_error(
+		"AiManage: parent 不支持文本追加，类型 = " + parent.get_class() + "\n可以在 ai_manage.gd 里为该控件实现追加逻辑"
+	)
 
 # 处理模型的推理过程内容并加入打字缓冲
 func on_ai_reasoning_content_generated(reasoning_content):
