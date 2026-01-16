@@ -91,10 +91,31 @@ addons/
 ## 使用方法
 
 ### 1. 安装插件
+将godot_ai_hook文件夹下载到自己的addons文件夹里。
+记得在 菜单栏/项目/项目设置/插件 中启动插件
 
-1.将godot_ai_hook文件夹下载到自己的addons文件夹里。
+### 2. 配置模型文件
+可以在 菜单栏/项目/工具 中看到带AI Hook的选项
+![show_config](https://github.com/user-attachments/assets/dc824f87-d92f-45d7-85bf-c56f2036a16a)
+
+点击 （AI Hook: 打开模型配置脚本），这里可以配置模型信息，请查看各模型提供商文档。
+![config_ai](https://github.com/user-attachments/assets/7b94231e-50de-4797-a590-8fc0c7e21cbd)
+### 3. 测试模型连接是否成功
+点击（AI Hook: 打开测试面板），将跳转到测试面板节点，再点击运行场景，这里有个简陋的测试面板，可以测试连接效果
+![open_test](https://github.com/user-attachments/assets/75117546-b25c-499d-8e0e-c2ef55a26846)
+测试成功
+![test](https://github.com/user-attachments/assets/431d6c29-2927-41fb-af11-f4c04cd686d2)
+### 4.使用 godot ai hook
+来到正题，这时可以使用插件了，打开个文本节点，在它下面挂载个 ai_manage节点（ctrl+a)+输入框输入ai应该就能看到了。
+![create_ai_manage](https://github.com/user-attachments/assets/89865771-1e3f-4d12-8316-e289873bf08c)
+在场景脚本里引用 ai_manage节点，添加 ai_manage节点.say("你想问的问题") 再运行这个场景就可以看到回答了。
+![excute](https://github.com/user-attachments/assets/844156d8-e82f-46c7-82b2-eab4703cb579)
+![it_work](https://github.com/user-attachments/assets/93cbac25-9d66-422d-818f-3ba652c7078e)
+
+
 
 ## 支持与 Star
+
 
 如果这个插件对你有帮助，或者在你的项目中起到了哪怕一点点作用，欢迎在仓库里点一个 ⭐ Star。
 
