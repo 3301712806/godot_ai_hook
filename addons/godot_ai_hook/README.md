@@ -132,10 +132,11 @@ addons/
 ![system_prompt](https://github.com/user-attachments/assets/ba27dd85-aab4-4106-8282-54c9aca126ed)
 
 按字典格式填写就行。
+运行 ai_manage节点.say_bind_key("你好啊，deepseek","友情猫娘")，就像一个猫娘钩子挂在节点上。
 
 ![it_work_again](https://github.com/user-attachments/assets/84d89bc2-e188-40e6-af84-abbc73b6a558)
 
-运行 ai_manage节点.say_bind_key("你好啊，deepseek","友情猫娘")，就像一个猫娘钩子挂在节点上。
+
 
 ## 支持与 Star
 
