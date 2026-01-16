@@ -17,89 +17,45 @@ then this plugin works like an **AI hook** that can be attached directly to node
 
 ---
 
-### Design Goal
 
-Godot AI Hook is **not** an “all-in-one AI framework”.
-Instead, it is designed around a very clear goal:
+## 📚 Table of Contents
 
-> **Attach AI to a Godot scene with minimal cognitive overhead.**
-
-To achieve this, the plugin follows these principles:
-
----
-
-### 1️⃣ Node-first: AI as a Node
-
-In Godot, **everything is a node**.
-
-Rather than providing a large set of static utility classes or complex APIs,
-Godot AI Hook treats AI itself as a **node that can be attached, referenced, and managed**.
-
-* `AiManage` is an **AI capability node**
-* You simply add it to the scene tree
-* UI elements, NPCs, and system logic can call it directly
-
-This makes AI feel more like a **game component** instead of an external service.
-
----
-
-### 2️⃣ Unified Abstraction for Streaming & Non-Streaming
-
-Different scenarios require different output behaviors:
-
-* Dialog boxes, subtitles → **streaming output**
-* One-shot analysis, system prompts → **non-streaming output**
-
-Internally, the plugin provides:
-
-* `ChatNode` (non-streaming)
-* `ChatStreamNode` (streaming)
-
-But for users, there are only a few simple entry points:
-
-```gdscript
-ai_manage.say(...)
-ai_manage.say_bind_key(...)
-```
-
-**The implementation may change, but the usage stays the same.**
+- [Godot AI Hook](#godot-ai-hook)
+  - [Design Goals](#design-goals)
+  - [🎮 Use Cases](#-use-cases)
+	- [🧙 NPC Dialogue & Personality](#-npc-dialogue--personality)
+	- [📜 Narration / Lore Generation](#-narration--lore-generation)
+	- [🧪 Prototyping & Gameplay Experiments](#-prototyping--gameplay-experiments)
+	- [🤖 In-game AI Assistant / Guide](#-in-game-ai-assistant--guide)
+	- [🛠️ Non-game Usage (Tools / Experiments)](#️-non-game-usage-tools--experiments)
+  - [✨ One-sentence Design Philosophy](#-one-sentence-design-philosophy)
+  - [Security Notice & Disclaimer](#security-notice--disclaimer)
+  - [Project Structure](#project-structure)
+	- [Core Script Responsibilities](#core-script-responsibilities)
+	  - [AiManage](#aimanage)
+	  - [ChatNode](#chatnode)
+	  - [ChatStreamNode](#chatstreamnode)
+	  - [Test Panel](#test-panel)
+  - [Usage](#usage)
+	- [1. Install the Plugin](#1-install-the-plugin)
+	- [2. Configure Model Settings](#2-configure-model-settings)
+	- [3. Test Model Connection](#3-test-model-connection)
+	- [4. Using Godot AI Hook](#4-using-godot-ai-hook)
+	- [5. Custom System Prompts](#5-custom-system-prompts)
+	- [6. Switching Between Stream / Non-stream](#6-switching-between-stream--non-stream)
+  - [Support & Star ⭐](#support--star-)
 
 ---
 
-### 3️⃣ Client-Oriented, Not Platform-Bound
+> **The goal of Godot AI Hook is:
+> to turn AI into a Godot node you already understand,
+> rather than an external SDK.**
 
-Godot AI Hook is positioned as:
+* **Node-first**: AI is a node that can be attached and called directly
+* **Unified API**: Streaming and non-streaming share the same entry points
+* **Client-side**: No hard binding to models or vendors
+* **Defensive**: Fail explicitly, no hidden “magic”
 
-> **An AI invocation client, not an SDK for a specific model platform.**
-
-Therefore:
-
-* It does not bind to a specific model
-* It does not depend on a specific cloud vendor
-* Any **OpenAI Chat Completions–compatible API** is supported whenever possible
-
-This allows you to:
-
-* Freely switch between models (DeepSeek / Doubao / local models)
-* Use cheaper models during development and replace them before release
-
----
-
-### 4️⃣ Defensive Design, Not “Magic”
-
-The plugin does not assume that:
-
-* An API key always exists
-* The network is always stable
-* JSON responses are always valid
-
-Instead, it aims to:
-
-* Validate inputs and responses at every step
-* Output clear error messages in the console
-* Avoid silent failures
-
-This is especially important during **development and learning phases**.
 
 ---
 
