@@ -344,6 +344,16 @@ Just like attaching a “catgirl AI hook” to your node 🐱
 
 ---
 
+### 6. Switch Between Streaming and Non-Streaming Modes
+
+Example usage:
+
+```gdscript
+ai_manage.set_ai_stream_type(true)   # Enable streaming mode
+ai_manage.set_ai_stream_type(false)  # Disable streaming mode (non-streaming)
+```
+
+
 ## Support & Star ⭐
 
 If this plugin helps you — even a little — feel free to give it a **Star** ⭐ on GitHub.

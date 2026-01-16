@@ -336,6 +336,17 @@ ai_manage.say_bind_key("你好啊，deepseek", "友情猫娘")
 
 ---
 
+### 6. 将流式节点改为非流式节点
+ 
+
+示例调用：
+
+```gdscript
+ai_manage.set_ai_stream_type(true)#设为流式
+ai_manage.set_ai_stream_type(false)#设为非流式
+
+```
+
 ## 支持与 Star ⭐
 
 如果这个插件对你有帮助，或者在你的项目中哪怕只发挥了一点点作用，
