@@ -4,7 +4,7 @@
 
 ## 概要：用途与优点
 
-**Godot AI Hook** 是一个面向 **Godot 4** 的 AI 聊天插件，用于快速接入**兼容 OpenAI Chat Completions 协议**的模型
+**Godot AI Hook** 是一个面向 **Godot 4.5** 的 AI 聊天插件，用于快速接入**兼容 OpenAI Chat Completions 协议**的模型
 （例如：部分云厂商提供的兼容接口）。
 
 如果你希望把 **DeepSeek、豆包** 这类大模型轻松接进游戏里，让：
