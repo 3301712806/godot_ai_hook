@@ -5,7 +5,7 @@
 ## Overview: Purpose & Benefits
 
 **Godot AI Hook** is an AI chat plugin for **Godot 4**, designed to quickly integrate models that are **compatible with the OpenAI Chat Completions protocol**
-(such as OpenAI-compatible APIs provided by cloud vendors or local proxy services).
+(such as OpenAI-compatible APIs provided by cloud vendors).
 
 If you want to easily bring large language models like **DeepSeek** or **Doubao** into your game, allowing:
 
