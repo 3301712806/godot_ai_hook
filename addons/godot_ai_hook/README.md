@@ -3,7 +3,7 @@
 ## 概要：用途和优点
 
 Godot Ai Hook 是一个面向 Godot 4 的 AI 聊天插件，主要用于快速接入兼容 OpenAI Chat Completions 协议的模型（如部分云厂商的兼容接口、本地代理等）。
-如果你想让主角和敌人都开口聊天、把 DeepSeek、豆包这类大模型一键接进游戏里，让背景显示文字更有特点，让 NPC 的对话更聪明、更有梗，那就选它就对了。
+如果你想让主角和敌人都开口聊天、把 DeepSeek、豆包这类大模型一键接进游戏里，让背景显示文字更有特点，让 NPC 的对话更聪明、更有梗，就像ai长了个钩子挂载在节点上，那选它就对了。
 
 - 一行代码接入 ：通过 AiManage 节点，即可在任意 UI 控件中追加 AI 回复内容。
 - 流式 / 非流式统一封装 ：同时提供 ChatNode （非流式 HTTPRequest）和 ChatStreamNode （流式 HTTPClient + SSE）两种实现，由 AiManage 统一管理。
