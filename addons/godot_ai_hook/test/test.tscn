@@ -1,0 +1,183 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5w5d5f4g3h2v"]
+
+[ext_resource type="Script" uid="uid://ddls6y7yb4von" path="res://addons/godot_ai_hook/test/test.gd" id="1_abcde"]
+[ext_resource type="PackedScene" uid="uid://bthjx8ttujhtb" path="res://addons/godot_ai_hook/ai_manage/ai_manage.tscn" id="2_fghij"]
+
+[node name="Test" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abcde")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "模型测试"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "model"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "deepseek-chat"
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "url"
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+placeholder_text = "https://api.deepseek.com/chat/completions"
+alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "secret_key"
+
+[node name="LineEdit3" type="LineEdit" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+placeholder_text = "API_KEY"
+alignment = 1
+secret = true
+
+[node name="TipLabel" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "推荐先配置好测试文件再测试"
+
+[node name="Button" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "连接测试"
+
+[node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "连接状态-->"
+
+[node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "一键测试"
+
+[node name="Label7" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "展示单词间隔时间"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+step = 0.01
+
+[node name="Label8" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "每句间隔时间"
+
+[node name="SpinBox2" type="SpinBox" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+step = 0.01
+
+[node name="Label9" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "回复前清空父文本"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer2" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Label6" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "非流式输出"
+
+[node name="LineEdit4" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/LineEdit4" instance=ExtResource("2_fghij")]
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "line_edit（can't edit version)"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/LineEdit" instance=ExtResource("2_fghij")]
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "rich_text_label"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/RichTextLabel" instance=ExtResource("2_fghij")]
+
+[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "code_edit"
+
+[node name="CodeEdit" type="CodeEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/CodeEdit" instance=ExtResource("2_fghij")]
+
+[node name="Label4" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "text_edit"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/TextEdit" instance=ExtResource("2_fghij")]
+
+[node name="Label7" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "中断测试"
+
+[node name="LineEdit5" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "如果没显示可能是interruption_time设小了"
+
+[node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/LineEdit5" instance=ExtResource("2_fghij")]
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

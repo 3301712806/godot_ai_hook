@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6n4pima3uu3x"]
+
+[ext_resource type="Script" uid="uid://ddls6y7yb4von" path="res://插件/test/test.gd" id="1_abcde"]
+[ext_resource type="PackedScene" uid="uid://bthjx8ttujhtb" path="res://插件/ai/ai_manage/ai_manage.tscn" id="2_fghij"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abcde")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Input" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter text here"
+
+[node name="GenerateStoryButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Generate Story"
+
+[node name="TranslateButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Translate Language"
+
+[node name="Output" type="TextEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="AiManage" parent="." instance=ExtResource("2_fghij")]
+
+[connection signal="pressed" from="VBoxContainer/GenerateStoryButton" to="." method="_on_generate_story_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TranslateButton" to="." method="_on_translate_button_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bthjx8ttujhtb"]
+
+[ext_resource type="Script" uid="uid://bgi6dloixdmhw" path="res://addons/godot_ai_hook/ai_manage/ai_manage.gd" id="1_2vb52"]
+
+[node name="AiManage" type="Node"]
+script = ExtResource("1_2vb52")
