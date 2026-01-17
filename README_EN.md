@@ -118,8 +118,6 @@ Although it is a game plugin, it can also be used for:
 > **Godot AI Hook does not try to teach you how to use AI.
 > It simply turns AI into a Godot node you already understand.**
 
----
-
 > **Note**
 > Most model providers offer OpenAI-compatible APIs, and this plugin attempts to support them as much as possible.
 > However, due to differences in request/response implementations, some models may not work correctly.
