@@ -1,4 +1,19 @@
 # Godot 4+ specific ignores
-.godot/
-/android/
-.history/
+
+# 1. 忽略根目录下的所有内容
+/*
+
+# 2. 允许 (不忽略) addons 文件夹本身
+!/addons/
+
+# 3. 忽略 addons 下的所有子内容（可选，如果你有多个插件）
+/addons/*
+
+# 4. 重点：排除你想要保留的特定插件文件夹
+!/addons/godot_ai_hook/
+
+# 5. 允许保留根目录下的重要文档（如 README 和 LICENSE）
+!/README.md
+!/README_EN.md
+!/LICENSE
+!/image
