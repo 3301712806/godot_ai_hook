@@ -54,19 +54,19 @@ func send_chat_request(content):
 
 	# -------- 基础参数校验 --------
 	if api_key.is_empty():
-		parent.on_ai_error_occurred("API_KEY 未设置")
+		parent.on_ai_error_occurred("API_KEY is not set")
 		return
 
 	if host.is_empty() or path.is_empty():
-		parent.on_ai_error_occurred("Stream URL 配置错误")
+		parent.on_ai_error_occurred("Stream URL configuration is invalid")
 		return
 
 	if model.is_empty():
-		parent.on_ai_error_occurred("Model 未设置")
+		parent.on_ai_error_occurred("Model is not set")
 		return
 
 	if content.is_empty():
-		parent.on_ai_error_occurred("发送内容为空")
+		parent.on_ai_error_occurred("Content to send is empty")
 		return
 
 	# -------- 重置状态 --------
@@ -76,7 +76,7 @@ func send_chat_request(content):
 	# -------- 建立连接 --------
 	var err := client.connect_to_host(host, port, TLSOptions.client())
 	if err != OK:
-		parent.on_ai_error_occurred("连接主机失败: " + str(err))
+		parent.on_ai_error_occurred("Failed to connect to host: " + str(err))
 		return
 
 	set_process(true)
@@ -89,7 +89,7 @@ func _process(_delta):
 	if _last_data_time == 0:
 		return
 	if Time.get_unix_time_from_system() - _last_data_time > STREAM_TIMEOUT:
-		parent.on_ai_error_occurred("AI 响应超时")
+		parent.on_ai_error_occurred("AI response timed out")
 		_stop_stream()
 		return
 	match client.get_status():
@@ -107,7 +107,7 @@ func _process(_delta):
 			_read_stream_body()
 
 		HTTPClient.STATUS_DISCONNECTED:
-			parent.on_ai_error_occurred("连接中断")
+			parent.on_ai_error_occurred("Connection disconnected")
 			_stop_stream()
 
 		_:
@@ -142,7 +142,7 @@ func _send_request():
 	)
 
 	if err != OK:
-		parent.on_ai_error_occurred("请求发送失败: " + str(err))
+		parent.on_ai_error_occurred("Failed to send streaming request: " + str(err))
 		_stop_stream()
 
 

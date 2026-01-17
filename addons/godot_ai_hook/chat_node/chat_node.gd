@@ -35,19 +35,19 @@ func send_chat_request(content: String):
 
 	# -------- 基础参数校验 --------
 	if api_key.is_empty():
-		parent.on_ai_error_occurred("API_KEY 为空")
+		parent.on_ai_error_occurred("API_KEY is empty")
 		return
 
 	if url.is_empty():
-		parent.on_ai_error_occurred("API URL 为空")
+		parent.on_ai_error_occurred("API URL is empty")
 		return
 
 	if model.is_empty():
-		parent.on_ai_error_occurred("Model 为空")
+		parent.on_ai_error_occurred("Model is empty")
 		return
 
 	if content.is_empty():
-		parent.on_ai_error_occurred("发送内容为空")
+		parent.on_ai_error_occurred("Content to send is empty")
 		return
 
 	# -------- 创建 HTTPRequest --------
@@ -81,7 +81,7 @@ func send_chat_request(content: String):
 
 	if err != OK:
 		parent.on_ai_error_occurred(
-			"HTTP 请求启动失败，错误码: " + str(err)
+			"Failed to start HTTP request, error code: " + str(err)
 		)
 		_safe_free_client()
 
@@ -91,7 +91,7 @@ func _on_request_completed(result, response_code, headers, body):
 	# -------- 请求层失败 --------
 	if result != HTTPRequest.RESULT_SUCCESS:
 		parent.on_ai_error_occurred(
-			"HTTP 请求失败 result=" + str(result)
+			"HTTP request failed, result=" + str(result)
 		)
 		_safe_free_client()
 		return
@@ -100,7 +100,7 @@ func _on_request_completed(result, response_code, headers, body):
 	if response_code != 200:
 		var err_text = body.get_string_from_utf8()
 		parent.on_ai_error_occurred(
-			"HTTP 错误码: %d\n%s" % [response_code, err_text]
+			"HTTP error code: %d\n%s" % [response_code, err_text]
 		)
 		_safe_free_client()
 		return
@@ -108,7 +108,7 @@ func _on_request_completed(result, response_code, headers, body):
 	# -------- 响应体解析 --------
 	var text = body.get_string_from_utf8()
 	if text.is_empty():
-		parent.on_ai_error_occurred("返回内容为空")
+		parent.on_ai_error_occurred("Response body is empty")
 		_safe_free_client()
 		return
 
@@ -116,7 +116,7 @@ func _on_request_completed(result, response_code, headers, body):
 	var parse_result := json.parse(text)
 	if parse_result != OK:
 		parent.on_ai_error_occurred(
-			"JSON 解析失败: " + str(parse_result)
+			"JSON parse failed: " + str(parse_result)
 		)
 		_safe_free_client()
 		return
@@ -125,18 +125,18 @@ func _on_request_completed(result, response_code, headers, body):
 
 	# -------- 结构防御 --------
 	if not data.has("choices"):
-		parent.on_ai_error_occurred("响应缺少 choices 字段")
+		parent.on_ai_error_occurred("Response is missing 'choices' field")
 		_safe_free_client()
 		return
 
 	if data["choices"].is_empty():
-		parent.on_ai_error_occurred("choices 为空")
+		parent.on_ai_error_occurred("'choices' array is empty")
 		_safe_free_client()
 		return
 
 	var choice = data["choices"][0]
 	if not choice.has("message") or not choice["message"].has("content"):
-		parent.on_ai_error_occurred("响应结构不完整")
+		parent.on_ai_error_occurred("Response structure is incomplete")
 		_safe_free_client()
 		return
 

@@ -44,17 +44,17 @@ func say(content:String,system_prompt:String=""):
 # 通过配置表中的 key 选择系统提示词并发送请求
 func say_bind_key(content:String,key:String):
 	if content.is_empty(): 
-		push_error("发送内容为空")
+		push_error("Content to send is empty")
 		return 
 	if key == null or key.is_empty():
-		push_error("system_prompt key 为空")
+		push_error("system_prompt key is empty")
 		return
 	system_prompt = SystemPromptConfig.system_prompt_dic.get(key,"")
 	if system_prompt is not String:
-		push_error("system_prompt 应为字符串，请检查system_prompt_dic里key对应的value")
+		push_error("system_prompt must be a String, please check the value for this key in SystemPromptConfig.system_prompt_dic")
 		return
 	if system_prompt.is_empty() :
-		push_error("SystemPromptConfig的字典不包含该key %s"%key)
+		push_error("SystemPromptConfig dictionary does not contain key %s"%key)
 		return
 	say(content,system_prompt)
 
@@ -86,13 +86,13 @@ func set_ai_stream_type(is_true):
 	# 实例化新节点
 	if is_true:
 		if chat_stream_node_scene == null:
-			push_error("chat_stream_node_scene 未设置")
+			push_error("chat_stream_node_scene is not set")
 			return
 		chat_stream_node = chat_stream_node_scene.instantiate()
 		add_child(chat_stream_node)
 	else:
 		if chat_node_scene == null:
-			push_error("chat_node_scene 未设置")
+			push_error("chat_node_scene is not set")
 			return
 		chat_node = chat_node_scene.instantiate()
 		add_child(chat_node)
@@ -115,7 +115,7 @@ func send_chat_request(content, system_prompt):
 		clean_parent_text_content()
 	# 防止重复请求
 	if not is_finished_transfer:
-		on_ai_error_occurred("AI 正在生成中")
+		on_ai_error_occurred("AI is already generating")
 		return
 
 	on_ai_request_started()
@@ -135,7 +135,7 @@ func send_chat_request(content, system_prompt):
 		has_sender = true
 
 	if not has_sender:
-		on_ai_error_occurred("未找到可用的 ChatNode")
+		on_ai_error_occurred("No available ChatNode found")
 		return
 
 
@@ -185,7 +185,7 @@ func _has_text_interface(node: Object) -> bool:
 # 清空父节点的文本内容
 func clean_parent_text_content():
 	if parent == null:
-		push_error("AiManage: parent 为空，无法清空文本")
+		push_error("AiManage: parent is null, cannot clear text")
 		return
 
 	# 优先使用 set_text 接口：适用于 Label/LineEdit/TextEdit/RichTextLabel 以及自定义控件
@@ -198,12 +198,12 @@ func clean_parent_text_content():
 		parent.clear()
 		return
 
-	push_error("AiManage: parent 类型不支持清空文本，类型 = " + parent.get_class() + "\n可以在 ai_manage.gd 里为该控件实现清空逻辑")
+	push_error("AiManage: parent type does not support clearing text, type = " + parent.get_class() + "\nYou can implement clear logic for this node type in ai_manage.gd")
 
 # 根据父节点控件类型安全地立即追加一段文本
 func _append_text_safe(text: String):
 	if parent == null:
-		push_error("AiManage: parent 为空")
+		push_error("AiManage: parent is null")
 		return
 
 	# 通用 set_text/get_text 接口
@@ -220,7 +220,7 @@ func _append_text_safe(text: String):
 		return
 
 	push_error(
-		"AiManage: parent 不支持文本追加，类型 = " + parent.get_class() + "\n可以在 ai_manage.gd 里为该控件实现追加逻辑"
+		"AiManage: parent does not support appending text, type = " + parent.get_class() + "\nYou can implement append logic for this node type in ai_manage.gd"
 	)
 
 # 处理模型的推理过程内容并加入打字缓冲

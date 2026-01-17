@@ -16,7 +16,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "模型测试"
+text = "Model Test"
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
@@ -55,29 +55,29 @@ secret = true
 
 [node name="TipLabel" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "推荐先配置好测试文件再测试"
+text = "Recommended to configure test script before running"
 
 [node name="Button" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "连接测试"
+text = "Connection Test"
 
 [node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "连接状态-->"
+text = "Connection status -->"
 
 [node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 
 [node name="Button2" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "一键测试"
+text = "Run All Tests"
 
 [node name="Label7" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "展示单词间隔时间"
+text = "Word interval time"
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -85,7 +85,7 @@ step = 0.01
 
 [node name="Label8" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "每句间隔时间"
+text = "Sentence interval time"
 
 [node name="SpinBox2" type="SpinBox" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -93,7 +93,7 @@ step = 0.01
 
 [node name="Label9" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "回复前清空父文本"
+text = "Clear parent text before reply"
 
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -112,7 +112,7 @@ columns = 2
 [node name="Label6" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "非流式输出"
+text = "Non-streaming output"
 
 [node name="LineEdit4" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2
@@ -169,12 +169,12 @@ layout_mode = 2
 [node name="Label7" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "中断测试"
+text = "Interruption test"
 
 [node name="LineEdit5" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "如果没显示可能是interruption_time设小了"
+placeholder_text = "If nothing appears, interruption_time may be too small"
 
 [node name="AiManage" parent="VBoxContainer/ScrollContainer/GridContainer2/LineEdit5" instance=ExtResource("2_fghij")]
 

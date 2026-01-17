@@ -95,11 +95,11 @@ func _apply_temp_config() -> bool:
 
 
 	if model.is_empty() or url.is_empty() or api_key.is_empty():
-		_log("[Error] Model / URL / API Key 不能为空")
+		_log("[Error] Model / URL / API Key must not be empty")
 		return false
 
 	if typing_interval < 0.0 or sentence_pause < 0.0:
-		_log("[Error] 打字间隔 / 句子停顿 不能为负数")
+		_log("[Error] typing_interval / sentence_pause cannot be negative")
 		return false
 
 	# 临时覆盖（仅测试用）
@@ -117,13 +117,13 @@ func _apply_temp_config() -> bool:
 # 使用 HTTPRequest 向当前配置的模型发送 ping 请求，验证连通性
 func _on_connect_test_pressed():
 	_clear_log()
-	connect_state_label.text = "测试中..."
+	connect_state_label.text = "Testing..."
 
 	if not _apply_temp_config():
-		connect_state_label.text = "配置错误"
+		connect_state_label.text = "Config error"
 		return
 
-	_log("[Test] 开始连接测试")
+	_log("[Test] Start connectivity test")
 
 	_http = HTTPRequest.new()
 	add_child(_http)
@@ -149,43 +149,43 @@ func _on_connect_test_pressed():
 	)
 
 	if err != OK:
-		_log("[Error] HTTP 请求启动失败: " + str(err))
-		connect_state_label.text = "启动失败"
+		_log("[Error] Failed to start HTTP request: " + str(err))
+		connect_state_label.text = "Start failed"
 
 
 # 处理连通性测试的 HTTP 返回结果并更新界面状态
 func _on_connect_result(result, response_code, _headers, body):
 	if result != HTTPRequest.RESULT_SUCCESS:
-		_log("[Fail] 网络层失败 result=" + str(result))
-		connect_state_label.text = "网络失败"
+		_log("[Fail] Network layer failed, result=" + str(result))
+		connect_state_label.text = "Network failed"
 		_safe_free_http()
 		return
 
 	_log("[HTTP] response_code=" + str(response_code))
 
 	if response_code == 200:
-		_log("[OK] 连接成功，API 可用")
-		connect_state_label.text = "连接成功"
+		_log("[OK] Connection succeeded, API is available")
+		connect_state_label.text = "Connected"
 	else:
-		_log("[Fail] 连接失败，返回内容：")
+		_log("[Fail] Connection failed, response body:")
 		_log(body.get_string_from_utf8())
-		connect_state_label.text = "连接失败"
+		connect_state_label.text = "Connection failed"
 
 	_safe_free_http()
 
 
 # =====================
-# 一键效果测试（AiManage）
+# One-click effect test (AiManage)
 # =====================
-# 依次触发多种展示控件的生成测试，并附带一次中断行为测试
+# Sequentially trigger display tests for multiple controls, plus interruption test
 func _on_test_chat_pressed():
-	_log("\n[Test] 开始效果测试（AiManage）")
+	_log("\n[Test] Start effect test (AiManage)")
 
 	if not _apply_temp_config():
 		return
 
 	var clean_before_reply := is_clean_before_reply_box.button_pressed
-	_log("[Test] 打字间隔=%.2f, 句子停顿=%.2f, 清空前文=%s" % [AiConfig.append_interval_time, AiConfig.sentence_pause_extra, str(clean_before_reply)])
+	_log("[Test] typing_interval=%.2f, sentence_pause=%.2f, clean_before_reply=%s" % [AiConfig.append_interval_time, AiConfig.sentence_pause_extra, str(clean_before_reply)])
 
 	test1_ai.set_clean_before_reply(clean_before_reply)
 	test2_ai.set_clean_before_reply(clean_before_reply)
@@ -195,7 +195,7 @@ func _on_test_chat_pressed():
 	err_test_ai.set_clean_before_reply(clean_before_reply)
 
 	# 统一触发生成
-	var prompt := "这是一个连接与显示测试，请简短回复。"
+	var prompt := "This is a connectivity and display test, please reply briefly."
 	
 	test1_ai.say(prompt)
 	await get_tree().create_timer(protect_time).timeout
@@ -208,15 +208,15 @@ func _on_test_chat_pressed():
 	not_stream_ai.set_ai_stream_type(false)
 	not_stream_ai.say(prompt)
 	
-	 # 中断测试逻辑
+	 # Interruption test logic
 	if not is_instance_valid(err_test_ai) or err_test_ai.get_parent() == null:
-	 # AiManage 已经不在节点树里
-		err_test.text = "节点销毁，下面为中断后内容:\n" + err_test.text
+	 # AiManage is no longer in the scene tree
+		err_test.text = "AiManage node freed, below is the content after interruption:\n" + err_test.text
 		return
 
-	# 还有有效 AiManage，开始一次长文本测试并在 3 秒后中断
+	# AiManage is valid, start a long-text test and interrupt after a while
 	err_test.text = ""
-	err_test_ai.say("请生成长文章，越长越好")
+	err_test_ai.say("Please generate a long article, as long as possible")
 
 	await get_tree().create_timer(interruption_time).timeout
 
@@ -226,20 +226,20 @@ func _on_test_chat_pressed():
 	
 
 # =====================
-# 工具函数
+# Helper functions
 # =====================
-# 安全释放测试用 HTTPRequest 节点
+# Safely free HTTPRequest node used in tests
 func _safe_free_http():
 	if _http and is_instance_valid(_http):
 		_http.queue_free()
 	_http = null
 
 
-# 向日志输出区域追加一行文本
+# Append one line of text to the log output area
 func _log(text: String):
 	log_view.text += text + "\n"
 
 
-# 清空日志输出
+# Clear log output
 func _clear_log():
 	log_view.text = ""
