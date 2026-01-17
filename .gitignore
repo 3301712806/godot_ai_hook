@@ -1,4 +1,4 @@
-# Godot 4+ specific ignores
+*.tmp
 
 # 1. 忽略根目录下的所有内容
 /*
