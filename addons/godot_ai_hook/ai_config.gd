@@ -18,8 +18,8 @@ static var port:int = 443
 # - append_interval_time：逐字追加的基础间隔时间（秒）
 # - sentence_pause_extra：在句号 / 感叹号 / 问号后额外停顿的时间（秒）
 # 将它们调大，可以让角色“说话”更慢、更有停顿感；设为 0 则无停顿
-static var append_interval_time:float = 0.1
-static var sentence_pause_extra:float = 0.2
+static var append_interval_time:float = 0
+static var sentence_pause_extra:float = 0
 static var is_clean_before_reply:bool = true#展示ai回复前是否有必要清空父节点的文本，初始时设置，也可后期调用对应函数设置
 
 # 仅做内部 URL 数据处理，一般无需修改
