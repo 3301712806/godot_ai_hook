@@ -16,7 +16,7 @@
 /addons/godot_ai_hook/**   -export-ignore
 
 # 5) 但仍然丢弃插件内部的编辑器缓存 / 导入缓存
-/addons/godot_ai_hook/**/*.uid        export-ignore
-/addons/godot_ai_hook/**/*.gd.uid     export-ignore
-/addons/godot_ai_hook/**/*.import     export-ignore
-/addons/godot_ai_hook/**/*.png.import export-ignore
+#    - 任意 *.uid（例如 .gd.uid / .png.uid / .whatever.uid）都会被忽略
+#    - 任意 *.import（例如 .png.import / .ogg.import）都会被忽略
+/addons/godot_ai_hook/**/*.uid    export-ignore
+/addons/godot_ai_hook/**/*.import export-ignore
