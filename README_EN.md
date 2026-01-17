@@ -225,7 +225,7 @@ Then enable the plugin via:
 
 In **Menu → Project → Tools**, you will find **AI Hook** related options.
 
-![show\_config](https://github.com/user-attachments/assets/dc824f87-d92f-45d7-85bf-c56f2036a16a)
+![show\_config](https://github.com/3301712806/godot_ai_hook/blob/main/image/config.jpg?raw=true)
 
 Click **AI Hook: Open Model Config Script** and fill in the configuration according to your model provider’s documentation.
 

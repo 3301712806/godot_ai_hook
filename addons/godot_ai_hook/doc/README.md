@@ -216,7 +216,7 @@ addons/
 
 在 **菜单栏 → 项目 → 工具** 中可以看到 **AI Hook** 相关选项。
 
-![show\_config](https://github.com/user-attachments/assets/dc824f87-d92f-45d7-85bf-c56f2036a16a)
+![show\_config](https://github.com/3301712806/godot_ai_hook/blob/main/image/config.jpg?raw=true)
 
 点击 **AI Hook：Open Model Config Script**，根据所使用模型服务商的文档填写配置。
 
