@@ -5,12 +5,18 @@
 # 1) 默认：忽略仓库根目录下的所有内容（文件和目录）
 /* export-ignore
 
-# 2) 只导出 addons/godot_ai_hook 下的文件
-/addons/godot_ai_hook/** -export-ignore
+# 2) 先“解封” addons 目录本身
+/addons                -export-ignore
 
-# 3) 但仍然丢弃插件内部的编辑器缓存 / 导入缓存
-#    注意：这里按“最终后缀”匹配，所以：
-#    - 任意 *.uid（例如 .gd.uid / .png.uid / .whatever.uid）都会被忽略
-#    - 任意 *.import（例如 .png.import / .ogg.import）都会被忽略
-/addons/godot_ai_hook/**/*.uid    export-ignore
-/addons/godot_ai_hook/**/*.import export-ignore
+# 3) 在 addons 下，默认仍然全部忽略
+/addons/*              export-ignore
+
+# 4) 再只导出 addons/godot_ai_hook 下的文件
+/addons/godot_ai_hook      -export-ignore
+/addons/godot_ai_hook/**   -export-ignore
+
+# 5) 但仍然丢弃插件内部的编辑器缓存 / 导入缓存
+/addons/godot_ai_hook/**/*.uid        export-ignore
+/addons/godot_ai_hook/**/*.gd.uid     export-ignore
+/addons/godot_ai_hook/**/*.import     export-ignore
+/addons/godot_ai_hook/**/*.png.import export-ignore
