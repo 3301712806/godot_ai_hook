@@ -20,3 +20,4 @@
 #    - 任意 *.import（例如 .png.import / .ogg.import）都会被忽略
 /addons/godot_ai_hook/**/*.uid    export-ignore
 /addons/godot_ai_hook/**/*.import export-ignore
+/addons/godot_ai_hook/**/*.tmp export-ignore
