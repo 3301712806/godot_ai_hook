@@ -22,12 +22,6 @@
 - [Godot AI Hook](#godot-ai-hook)
   - [设计目标](#设计目标)
   - [🎮 使用场景说明（Use Cases）](#-使用场景说明use-cases)
-	- [🧙 NPC 对话与性格驱动](#-npc-对话与性格驱动)
-	- [📜 剧情旁白 / 世界观文本生成](#-剧情旁白--世界观文本生成)
-	- [🧪 原型验证 & 玩法实验](#-原型验证--玩法实验)
-	- [🤖 游戏内 AI 助手 / 引导角色](#-游戏内-ai-助手--引导角色)
-	- [🛠️ 非正式用途（工具 / 实验）](#️-非正式用途工具--实验)
-  - [✨ 一句话总结设计理念](#-一句话总结设计理念)
   - [安全声明与免责声明](#安全声明与免责声明)
   - [项目结构](#项目结构)
 	- [核心脚本职责说明](#核心脚本职责说明)
@@ -224,7 +218,7 @@ addons/
 
 ![show\_config](https://github.com/user-attachments/assets/dc824f87-d92f-45d7-85bf-c56f2036a16a)
 
-点击 **AI Hook：打开模型配置脚本**，根据所使用模型服务商的文档填写配置。
+点击 **AI Hook：Open Model Config Script**，根据所使用模型服务商的文档填写配置。
 
 ![config\_ai](https://github.com/user-attachments/assets/7b94231e-50de-4797-a590-8fc0c7e21cbd)
 
@@ -232,7 +226,7 @@ addons/
 
 ### 3. 测试模型连接
 
-点击 **AI Hook：打开测试面板**，进入测试场景并运行。
+点击 **AI Hook：Open Test Panel**，进入测试场景并运行。
 
 ![open\_test](https://github.com/user-attachments/assets/75117546-b25c-499d-8e0e-c2ef55a26846)
 
@@ -272,7 +266,7 @@ ai_manage.say("问题内容", system_prompt)
 
 但 System Prompt 通常较长，**更推荐使用配置文件 + key 的方式**。
 
-在 **菜单栏 → 项目 → 工具 → AI Hook：打开提示词配置脚本** 中配置：
+在 **菜单栏 → 项目 → 工具 → AI Hook：Open System Prompt Script** 中配置：
 
 ![system\_prompt](https://github.com/user-attachments/assets/ba27dd85-aab4-4106-8282-54c9aca126ed)
 

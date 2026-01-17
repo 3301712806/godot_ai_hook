@@ -218,7 +218,7 @@ addons/
 
 ![show\_config](https://github.com/user-attachments/assets/dc824f87-d92f-45d7-85bf-c56f2036a16a)
 
-点击 **AI Hook：打开模型配置脚本**，根据所使用模型服务商的文档填写配置。
+点击 **AI Hook：Open Model Config Script**，根据所使用模型服务商的文档填写配置。
 
 ![config\_ai](https://github.com/user-attachments/assets/7b94231e-50de-4797-a590-8fc0c7e21cbd)
 
@@ -226,7 +226,7 @@ addons/
 
 ### 3. 测试模型连接
 
-点击 **AI Hook：打开测试面板**，进入测试场景并运行。
+点击 **AI Hook：Open Test Panel**，进入测试场景并运行。
 
 ![open\_test](https://github.com/user-attachments/assets/75117546-b25c-499d-8e0e-c2ef55a26846)
 
@@ -266,7 +266,7 @@ ai_manage.say("问题内容", system_prompt)
 
 但 System Prompt 通常较长，**更推荐使用配置文件 + key 的方式**。
 
-在 **菜单栏 → 项目 → 工具 → AI Hook：打开提示词配置脚本** 中配置：
+在 **菜单栏 → 项目 → 工具 → AI Hook：Open System Prompt Script** 中配置：
 
 ![system\_prompt](https://github.com/user-attachments/assets/ba27dd85-aab4-4106-8282-54c9aca126ed)
 
