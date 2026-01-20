@@ -203,6 +203,10 @@ addons/
 
 ### 1. 安装插件
 
+打开插件市场搜索下载插件
+
+![install](https://github.com/3301712806/godot_ai_hook/blob/main/image/install.jpg?raw=true)
+
 将 `godot_ai_hook` 文件夹复制到项目的 `addons` 目录中。
 然后在：
 
