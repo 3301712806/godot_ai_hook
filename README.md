@@ -207,7 +207,7 @@ addons/
 
 ![install](https://github.com/3301712806/godot_ai_hook/blob/main/image/install.jpg?raw=true)
 
-将 `godot_ai_hook` 文件夹复制到项目的 `addons` 目录中。
+或者将 `godot_ai_hook` 文件夹复制到项目的 `addons` 目录中。
 然后在：
 
 **菜单栏 → 项目 → 项目设置 → 插件**

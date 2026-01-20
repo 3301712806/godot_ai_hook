@@ -213,7 +213,11 @@ addons/
 
 ### 1. Install the Plugin
 
-Copy the `godot_ai_hook` folder into your project’s `addons` directory.
+Open the plugin marketplace and search for plugins.
+
+![install](https://github.com/3301712806/godot_ai_hook/blob/main/image/install.jpg?raw=true)
+
+Or copy the `godot_ai_hook` folder into your project’s `addons` directory.
 
 Then enable the plugin via:
 
