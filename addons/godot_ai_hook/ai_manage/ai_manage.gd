@@ -39,9 +39,7 @@ var _is_typing: bool = false
 var is_clean_before_reply:bool = true
 var model_para:Dictionary
 
-#统一管理通用配置
-func load_model_para_from_ai_config():
-	model_para = AiConfig.model_para
+
 	
 # 使用给定内容和系统提示词触发一次 AI 请求
 func say(content:String,system_prompt:String=""):
@@ -71,7 +69,7 @@ func say_bind_key(content:String,key:String):
 func _ready() -> void:
 	# 默认流式
 	set_ai_stream_type(true)
-	load_model_para_from_ai_config()
+	_init_model_para_from_ai_config()
 	
 func set_clean_before_reply(is_true:bool):
 	is_clean_before_reply =is_true
@@ -270,3 +268,14 @@ func cancel_ai_transfer():
 # 当节点离开场景树时自动取消所有 AI 传输
 func _exit_tree() -> void:
 	cancel_ai_transfer()
+	
+	
+#统一管理通用配置
+func _init_model_para_from_ai_config():
+	model_para = AiConfig.model_para
+#set model para很多模型在开启 response_format: { "type": "json_object" } 时，要求提示词中必须包含 "json" 关键词
+func set_response_format_is_json(flat:bool):
+	if flat == true:
+		model_para.set("response_format",{"type":"json_object"})
+	else :
+		model_para.set("response_format",{"type":"text"})
