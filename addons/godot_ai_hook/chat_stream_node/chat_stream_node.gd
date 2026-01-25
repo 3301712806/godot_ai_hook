@@ -15,7 +15,7 @@ extends Node
 @onready var parent = get_parent()
 
 var api_key: String 
-var model: String 
+var model_para: Dictionary 
 var host: String 
 var path: String 
 var port: int 
@@ -36,11 +36,11 @@ var _request_sent := false
 # 设置当前请求使用的系统提示词
 func set_system_prompt(prompt):
 	system_prompt = prompt
-
+func set_model_para(para:Dictionary):
+	model_para = para
 # 从 AiConfig 同步最新的 api_key / model / host / path / port，可重定向配置来源
 func _load_config():
 	api_key = AiConfig.api_key
-	model = AiConfig.model
 	host= AiConfig.get_stream_url_host()
 	path = AiConfig.get_stream_url_path()
 	port = AiConfig.port
@@ -61,9 +61,7 @@ func send_chat_request(content):
 		parent.on_ai_error_occurred("Stream URL configuration is invalid")
 		return
 
-	if model.is_empty():
-		parent.on_ai_error_occurred("Model is not set")
-		return
+
 
 	if content.is_empty():
 		parent.on_ai_error_occurred("Content to send is empty")
@@ -118,7 +116,6 @@ func _send_request():
 	_request_sent = true
 
 	var body := {
-		"model": model,
 		"stream": true,
 		"messages": [
 			{"role": "system", "content": system_prompt},
@@ -126,7 +123,9 @@ func _send_request():
 		]
 		
 	}
-
+	print(model_para)
+	body.merge(model_para)
+	
 	var headers := [
 		"Host: %s" % host,
 		"Content-Type: application/json",

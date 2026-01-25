@@ -12,7 +12,7 @@ extends Node
 # API 配置常量
 var url: String
 var api_key: String
-var model: String
+var model_para:Dictionary
 @onready var parent = get_parent()
 
 var system_prompt := ""
@@ -22,11 +22,11 @@ var client: HTTPRequest = null
 # 设置当前请求使用的系统提示词
 func set_system_prompt(prompt):
 	system_prompt = prompt
-
+func set_model_para(para:Dictionary):
+	model_para = para
 # 从 AiConfig 同步最新的 api_key / model / url，可重定向配置来源
 func _load_config():
 	api_key = AiConfig.api_key
-	model = AiConfig.model
 	url = AiConfig.url
 
 # 构建并发送一次非流式 HTTP 请求到模型服务
@@ -42,9 +42,7 @@ func send_chat_request(content: String):
 		parent.on_ai_error_occurred("API URL is empty")
 		return
 
-	if model.is_empty():
-		parent.on_ai_error_occurred("Model is empty")
-		return
+
 
 	if content.is_empty():
 		parent.on_ai_error_occurred("Content to send is empty")
@@ -60,15 +58,14 @@ func send_chat_request(content: String):
 		"Content-Type: application/json",
 		"Authorization: Bearer " + api_key
 	]
-
+	
 	var body := {
-		"model": model,
 		"messages": [
 			{"role": "system", "content": system_prompt},
 			{"role": "user", "content": content}
 		]
 	}
-
+	body.merge(model_para)
 	var json_body := JSON.stringify(body)
 
 	# -------- 发起请求 --------

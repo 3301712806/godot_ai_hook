@@ -77,7 +77,7 @@ func _ready() -> void:
 # =====================
 # 从 AiConfig 读取当前模型、URL 与密钥到输入框
 func _load_from_config():
-	model_input.text = AiConfig.model
+	model_input.text = AiConfig.model_para.get("model","")
 	url_input.text = AiConfig.url
 	api_key_input.text = AiConfig.api_key
 	append_interval_time_box.value = AiConfig.append_interval_time
@@ -103,7 +103,7 @@ func _apply_temp_config() -> bool:
 		return false
 
 	# 临时覆盖（仅测试用）
-	AiConfig.model = model
+	AiConfig.model_para.set("model",model) 
 	AiConfig.url = url
 	AiConfig.api_key = api_key
 	AiConfig.append_interval_time = typing_interval
@@ -123,7 +123,7 @@ func _on_connect_test_pressed():
 		connect_state_label.text = "Config error"
 		return
 
-	_log("[Test] Start connectivity test")
+	_log("[Test] 开始连接测试")
 
 	_http = HTTPRequest.new()
 	add_child(_http)
@@ -135,7 +135,7 @@ func _on_connect_test_pressed():
 	]
 
 	var body := {
-		"model": AiConfig.model,
+		"model": AiConfig.model_para.get("model",""),
 		"messages": [
 			{"role": "user", "content": "ping"}
 		]
@@ -175,9 +175,9 @@ func _on_connect_result(result, response_code, _headers, body):
 
 
 # =====================
-# One-click effect test (AiManage)
+# 一键效果测试（AiManage）
 # =====================
-# Sequentially trigger display tests for multiple controls, plus interruption test
+# 依次触发多种展示控件的生成测试，并附带一次中断行为测试
 func _on_test_chat_pressed():
 	_log("\n[Test] Start effect test (AiManage)")
 
@@ -208,13 +208,13 @@ func _on_test_chat_pressed():
 	not_stream_ai.set_ai_stream_type(false)
 	not_stream_ai.say(prompt)
 	
-	 # Interruption test logic
+	 # 中断测试逻辑
 	if not is_instance_valid(err_test_ai) or err_test_ai.get_parent() == null:
-	 # AiManage is no longer in the scene tree
+	 # AiManage 已经不在节点树里
 		err_test.text = "AiManage node freed, below is the content after interruption:\n" + err_test.text
 		return
 
-	# AiManage is valid, start a long-text test and interrupt after a while
+	# 还有有效 AiManage，开始一次长文本测试并在 3 秒后中断
 	err_test.text = ""
 	err_test_ai.say("Please generate a long article, as long as possible")
 
@@ -226,20 +226,20 @@ func _on_test_chat_pressed():
 	
 
 # =====================
-# Helper functions
+# 工具函数
 # =====================
-# Safely free HTTPRequest node used in tests
+# 安全释放测试用 HTTPRequest 节点
 func _safe_free_http():
 	if _http and is_instance_valid(_http):
 		_http.queue_free()
 	_http = null
 
 
-# Append one line of text to the log output area
+# 向日志输出区域追加一行文本
 func _log(text: String):
 	log_view.text += text + "\n"
 
 
-# Clear log output
+# 清空日志输出
 func _clear_log():
 	log_view.text = ""

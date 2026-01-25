@@ -37,6 +37,12 @@ var append_buffer: String = ""
 var _append_accumulator: float = 0.0
 var _is_typing: bool = false
 var is_clean_before_reply:bool = true
+var model_para:Dictionary
+
+#统一管理通用配置
+func load_model_para_from_ai_config():
+	model_para = AiConfig.model_para
+	
 # 使用给定内容和系统提示词触发一次 AI 请求
 func say(content:String,system_prompt:String=""):
 	send_chat_request(content, system_prompt)
@@ -65,6 +71,7 @@ func say_bind_key(content:String,key:String):
 func _ready() -> void:
 	# 默认流式
 	set_ai_stream_type(true)
+	load_model_para_from_ai_config()
 	
 func set_clean_before_reply(is_true:bool):
 	is_clean_before_reply =is_true
@@ -131,6 +138,7 @@ func send_chat_request(content, system_prompt):
 			continue
 
 		child.set_system_prompt(system_prompt)
+		child.set_model_para(model_para)
 		child.send_chat_request(content)
 		has_sender = true
 
