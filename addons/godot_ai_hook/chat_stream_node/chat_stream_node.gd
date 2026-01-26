@@ -123,7 +123,6 @@ func _send_request():
 		]
 		
 	}
-	print(model_para)
 	body.merge(model_para)
 	
 	var headers := [
